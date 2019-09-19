@@ -1,0 +1,17 @@
+failing:
+
+jupyter            1.0.0
+jupyter-client     5.3.3
+jupyter-console    6.0.0
+jupyter-core       4.5.0
+
+
+passing:
+
+jupyter            1.0.0
+jupyter-client     5.3.1
+jupyter-console    6.0.0
+jupyter-core       4.5.0
+
+
+
