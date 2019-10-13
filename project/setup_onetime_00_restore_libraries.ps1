@@ -5,5 +5,4 @@ python -m virtualenv pymote_env --no-site-packages
 .\pymote_env\Scripts\activate
 
 # get the packages
-pip install -r requirements.txt
-
+pip install --find-links=pymote_wheelhouse -r requirements.txt
