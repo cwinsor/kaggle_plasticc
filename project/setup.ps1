@@ -1,16 +1,49 @@
+################################################
+# activate the virtual environment
+# if the pymote_env does not exist - create it
 
-$TB_ROOT    = $PSScriptRoot
-$TB_SCRIPTS = $PSScriptRoot
+if (-NOT (Test-Path '.\pymote_env\Scripts\activate' -PathType Leaf)) {
 
-# if the virtualenv (pymote_env) does not exist then create it
-# required libraries are identified in requirements.txt
+    " "
+    "did not find pymote_env\Scripts\activate - creating virtualenv now..."
 
-if (-not (Test-Path "$TB_ROOT\pymote_env\Scripts\activate" -PathType Leaf)) {
-    &"$TB_SCRIPTS\setup_onetime_00_restore_libraries.ps1"
+    # confirm at least we have python with pip
+    python --version
+    python -m pip --version
+
+    # add virtualenv to global libraries
+    python -m pip install virtualenv
+
+    # create an empty virtualenv
+    python -m virtualenv pymote_env --no-site-packages
     }
 
-.\setup_everytime_00_activate_env.ps1
-.\setup_everytime_01_add_cwd_to_path.ps1
-#.\setup_everytime_03_start_code.ps1
-.\setup_everytime_02_start_jupyter_notebook
+# activate the virtualenv
+.\pymote_env\Scripts\activate
 
+# get the libraries specified in requirements.txt
+pip install -r requirements.txt
+
+
+
+################################################
+# add current directory to PATH (so libraries can be found)
+
+$Env:PYTHONPATH=$ENV:PYTHONPATH + $PSScriptRoot
+$Env:PYTHONPATH=$ENV:PYTHONPATH + ';'
+
+$Env:PYTHONPATH=$ENV:PYTHONPATH + $PSScriptRoot
+$Env:PYTHONPATH=$ENV:PYTHONPATH + '/lib;'
+
+
+#################################################
+# start vs-code
+" "
+"to start visual studio code:"
+"code -n ."
+
+#################################################
+# start vs-code
+" "
+"to start jupyter notebook:"
+"jupyter notebook"
