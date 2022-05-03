@@ -1,25 +1,25 @@
 ################################################
 # activate the virtual environment
-# if the pymote_env does not exist - create it
+# if the venv does not exist - create it
 
-if (-NOT (Test-Path '.\pymote_env\Scripts\activate' -PathType Leaf)) {
+if (-NOT (Test-Path '.\venv\Scripts\activate' -PathType Leaf)) {
 
     " "
-    "did not find pymote_env\Scripts\activate - creating virtualenv now..."
+    "did not find venv\Scripts\activate - creating now..."
 
     # confirm at least we have python with pip
     python --version
     python -m pip --version
 
-    # add virtualenv to global libraries
-    python -m pip install virtualenv
+    # add venv to global libraries
+    # python -m pip install venv
 
     # create an empty virtualenv
-    python -m virtualenv pymote_env --no-site-packages
+    python -m venv venv
     }
 
-# activate the virtualenv
-.\pymote_env\Scripts\activate
+# activate the venv
+.\venv\Scripts\activate
 
 # get the libraries specified in requirements.txt
 pip install -r requirements.txt
